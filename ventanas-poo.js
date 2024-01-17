@@ -35,8 +35,21 @@ class Course {
         name,
         classes = [],
     }) {
-        this.name = name;
-        this.classes = classes
+        //poniendole el _ bloqueamos el cambio de cualquier persona no habilitada
+        this._name = name;
+        this.classes = classes;
+    }
+
+    get name() {
+        return this._name
+    }
+
+    set name (nuevoNombre) {
+        if (nuevoNombre === "Curso Malito de Programación Básica") {
+            console.error("Web... no");
+        } else {
+            this._name = nuevoNombre;
+        }
     }
 }
 
@@ -44,6 +57,11 @@ const cursoProgBasica = new Course({
     name: "Curso Gratis de Programación Básica",
     classes: futbolPOO,
 })
+
+//Vamos a hacer como que name sea un metodo
+//ya no hacen falta los parentesis porque los estamos poniendo en get
+cursoProgBasica.name
+
 const cursoDefinitivoHTML = new Course({
     name: "Curso Definitivo de HTML y CSS",
 });
