@@ -17,17 +17,22 @@ const futbolPOO = new ClassesForCourses({
 })
 
 class Comment {
-    constructor ({
-        user,
-        date,
-        content,
-        answer = [],
-    }){
-        this.user = user;
-        this.date = date;
-        this.content = content;
-        this.answer = answer;
-    }
+  constructor({
+    content,
+    studentName,
+    studentRole = "estudiante",
+  }) {
+    this.content = content;
+    this.studentName = studentName;
+    this.studentRole = studentRole;
+    this.likes = 0;
+  }
+
+  publicar() {
+    console.log(this.studentName + " (" + this.studentRole + ")");
+    console.log(this.likes + " likes");
+    console.log(this.content);
+  }
 }
 
 function videoPlay(id) {
@@ -175,9 +180,19 @@ class Student {
     this.approvedCourses = approvedCourses;
     this.learningPaths = learningPaths;
   }
+
+  publicarComentario(commentContent) {
+    const comment = new Comment({
+      content: commentContent,
+      studentName: this.name,
+    });
+    comment.publicar();
+  }
 }
 
 //CLASES HIJOS
+
+//HIJO FREE
 class FreeStudent extends Student {
   constructor(props) {
     super(props);
@@ -192,6 +207,7 @@ class FreeStudent extends Student {
   }
 }
 
+// HIJO BASIC
 class BasicStudent extends Student {
   constructor(props) {
     super(props);
@@ -206,6 +222,7 @@ class BasicStudent extends Student {
   }
 }
 
+//HIJO EXPERT
 class ExpertStudent extends Student {
   constructor(props) {
     super(props);
@@ -216,22 +233,38 @@ class ExpertStudent extends Student {
   }
 }
 
+//HIJO TEARCHER
+class TeacherStudent extends Student {
+  constructor(props) {
+    super(props);
+  }
 
+  approveCourse(newCourse) {
+    this.approvedCourses.push(newCourse);
+  }
 
+  publicarComentario(commentContent) {
+    const comment = new Comment({
+      content: commentContent,
+      studentName: this.name,
+      studentRole: "profesor",
+    });
+    comment.publicar();
+  }
+}
 
-
-const juan2 = new FreeStudent({
+const juan = new FreeStudent({
   name: "JuanDC",
   username: "juandc",
   email: "juanito@juanito.com",
   twitter: "fjuandc",
   learningPaths: [
     escuelaWeb,
-
+    escuelaVgs,
   ],
 });
 
-const miguelito2 = new BasicStudent({
+const miguelito = new BasicStudent({
   name: "Miguelito",
   username: "migelitofeliz",
   email: "miguelito@juanito.com",
@@ -240,4 +273,11 @@ const miguelito2 = new BasicStudent({
     escuelaWeb,
     escuelaData,
   ],
+});
+
+const freddy = new TeacherStudent({
+  name: "Freddy Vega",
+  username: "freddier",
+  email: "f@gep.com",
+  instagram: "freddiervega",
 });
