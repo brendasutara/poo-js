@@ -1,3 +1,23 @@
+class Course {
+    constructor({
+        name,
+        classes = [],
+    }) {
+        this.name = name;
+        this.classes = classes
+    }
+}
+
+const cursoProgBasica = new Course({
+    name: "Curso Gratis de Programación Básica",
+})
+const cursoDefinitivoHTML = new Course({
+    name: "Curso Definitivo de HTML y CSS",
+});
+const cursoPracticoHTML = new Course({
+    name: "Curso Practico de HTML y CSS",
+});
+
 class LearningPath {
     constructor({
         name,
@@ -19,21 +39,30 @@ const escuelaWeb = new LearningPath({
     id: 4512,
     name: "Escuela de Desarrollo Web",
     courses: [
-      'cursoJS',
-      'cursoReact',
-      'cursoNextJS',
+        cursoProgBasica,
+        cursoDefinitivoHTML,
+        cursoPracticoHTML,
     ],
-  });
+});
   
-  const escuelaData = new LearningPath({
+const escuelaData = new LearningPath({
     id: 1268,
     name: "Escuela de Data Science",
     courses: [
-      'cursoPython',
-      'CursoMatematicas',
-      'CursoExcel',
+        cursoProgBasica,
+        'CursoMatematicas',
+        'CursoExcel',
     ],
-  });
+});
+
+const escuelaVgs = new LearningPath({
+    name: "Escuela de Vidweojuegos",
+    courses: [
+      cursoProgBasica,
+      "Curso de Unity",
+      "Curso de Unreal",
+    ],
+})
 
 //ESTE ES NUESTRO HERMOSO MOLDE-PROTOTIPO
 class Student {
@@ -67,7 +96,7 @@ const juan2 = new Student({
   twitter: "fjuandc",
   learningPaths: [
     escuelaWeb,
-    escuelaVgs,
+
   ],
 });
 
