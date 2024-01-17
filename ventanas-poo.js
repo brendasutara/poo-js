@@ -1,3 +1,35 @@
+class ClassesForCourses {
+    constructor ({
+        title,
+        id,
+        comment = [],
+    }) {
+        this.title = title;
+        this.id = id;
+        this.comment = comment
+    }
+}
+
+//clase generica de POO de futbol
+const futbolPOO = new ClassesForCourses({
+    id: 38618,
+    title: 'Bonus: fútbol y programación orientada a objetos',
+})
+
+class Comment {
+    constructor ({
+        user,
+        date,
+        content,
+        answer = [],
+    }){
+        this.user = user;
+        this.date = date;
+        this.content = content;
+        this.answer = answer;
+    }
+}
+
 class Course {
     constructor({
         name,
@@ -10,6 +42,7 @@ class Course {
 
 const cursoProgBasica = new Course({
     name: "Curso Gratis de Programación Básica",
+    classes: futbolPOO,
 })
 const cursoDefinitivoHTML = new Course({
     name: "Curso Definitivo de HTML y CSS",
